@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coronavirus statistics</title>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="container">
+<nav class="navbar navbar-light bg-light">
+    <div class="navbar-brand">
+        <img src="img/covidIcon.svg" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
+        <span><%= countryTitle %> coronavirus statistics</span>
+    </div>
+</nav>
+<!-- /.row -->
+    <% let dateKeys = [];
+    for (let key in result.timelineitems[0]) {
+        if (key !== 'stat') {
+            dateKeys.push(key);
+        }
+    }
+    let firstKey = dateKeys[0];
+    let lastKey = dateKeys[dateKeys.length - 1];
+    %>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">&nbsp;</th>
+
+                <th scope="col"><%= firstKey %></th>
+                <th scope="col"><%= lastKey %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">New daily cases</th>
+        <td><%= result.timelineitems[0][firstKey].new_daily_cases %></td>
+        <td><%= result.timelineitems[0][lastKey].new_daily_cases %></td>
+    </tr>
+
+    <tr>
+        <th scope="row">New daily deaths</th>
+        <td><%= result.timelineitems[0][firstKey].new_daily_deaths %></td>
+        <td><%= result.timelineitems[0][lastKey].new_daily_deaths %></td>
+    </tr>
+    <tr>
+        <th scope="row">Total cases</th>
+        <td><%= result.timelineitems[0][firstKey].total_cases %></td>
+        <td><%= result.timelineitems[0][lastKey].total_cases %></td>
+    </tr>
+    <tr>
+        <th scope="row">Total recoveries</th>
+        <td><%= result.timelineitems[0][firstKey].total_recoveries %></td>
+        <td><%= result.timelineitems[0][lastKey].total_recoveries %></td>
+    </tr>
+    <tr>
+        <th scope="row">Total deaths</th>
+        <td><%= result.timelineitems[0][firstKey].total_deaths %></td>
+        <td><%= result.timelineitems[0][lastKey].total_deaths %></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<!-- /.container -->
+</body>
+</html>
